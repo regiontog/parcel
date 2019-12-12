@@ -1,0 +1,2 @@
+exports.fn = () => 'foobar';
+exports = {};
