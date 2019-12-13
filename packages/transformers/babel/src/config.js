@@ -43,15 +43,15 @@ export async function load(
     if (partialConfig == null) {
         return;
     } else if (partialConfig.hasFilesystemConfig()) {
-        let clone = x => JSON.parse(JSON.stringify(x));
+        let cloneOptions = x => x !== undefined ? JSON.parse(JSON.stringify(x)) : {};
 
         let options = {
             ...partialConfig.options,
-            plugins: partialConfig.options.plugins.map(plugin => bundledBabelCore.createConfigItem([plugin.file.request, clone(plugin.options)], {
+            plugins: partialConfig.options.plugins.map(plugin => bundledBabelCore.createConfigItem([plugin.file.request, cloneOptions(plugin.options)], {
                 type: 'plugin',
                 dirname: BABEL_TRANSFORMER_DIR
             })),
-            presets: partialConfig.options.presets.map(preset => bundledBabelCore.createConfigItem([preset.file.request, clone(preset.options)], {
+            presets: partialConfig.options.presets.map(preset => bundledBabelCore.createConfigItem([preset.file.request, cloneOptions(preset.options)], {
                 type: 'preset',
                 dirname: BABEL_TRANSFORMER_DIR
             })),
