@@ -1,6 +1,6 @@
 {
     "name": "parcel-transformer-babel-set-preset-env-target",
-    "version": "1.0.0-alpha.3.2",
+    "version": "2.0.0-alpha.3.3",
     "license": "MIT",
     "scripts": {
         "build": "babel src -d lib"
